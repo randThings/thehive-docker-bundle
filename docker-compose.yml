@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  thehive:
+    restart: always
+    build:
+      context: ./config/thehive
+      dockerfile: thehive.dockerfile
+      args:
+        - THEHIVE_VERSION=${THEHIVE_VERSION}
+    image: x01/thehive:${THEHIVE_VERSION}
+    hostname: thehive
+    container_name: thehive
+    #volumes:
+    networks:
+      - thehive_net
+    ports:
+      - 9000:9000
+
+networks:
+  thehive_net:
+    name: thehive_net
